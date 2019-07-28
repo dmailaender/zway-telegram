@@ -1,13 +1,18 @@
 /**
- * Telegram notifier for Z-Way home automation server.
+ * Telegram notifier for Z-Way Home Automation server.
  *
- * Sends notifications to Telegram chats with your bot. Notifications can be
- * customized by device and/or value.
+ * Module for the Z-Way Home Automation server that forwards notifications to a 
+ * Telegram chat via the Bot API. Messages can be customized by device/value
+ * through the app settings, no separate virtual device is needed.
  *
- * Copyright 2019 David Mailänder 
- * Released under the GNU GPLv3, see https://www.gnu.org/licenses/gpl.txt.
+ * Written by David Mailänder <david@mailaender.it> in July 2019 and published
+ * on https://gitlab.com/ailaender.it/telegram-notifier under the GNU GPLv3.
+ *
+ * Visit our blog https://mailaender.it for more information about Z-Wave, home
+ * automation and software development.
  * 
- * https://gitlab.com/z-way-modules/telegram-notifier
+ * Copyright 2019 David Mailänder 
+ * 
  **/
 
 // ----------------------------------------------------------------------------
