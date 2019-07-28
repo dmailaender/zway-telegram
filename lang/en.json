@@ -1,0 +1,16 @@
+{
+	"m_title":"Telegram Notifier",
+	"m_descr":"This module can forward notifications via Telegram Bot API to a specific chat",	
+	"l_token": "Bot Access Token",
+	"l_chat_id": "Chat ID",
+	"l_log_level": "Log Level",
+	"l_devices": "Device Notifications",
+	"l_device_id": "Device",
+	"l_value": "Notification Value",
+	"l_message": "Message",
+	"l_log_all": "Log all notifications",
+	"l_log_error": "Log errors only",
+	"l_log_none": "Do not log anything",
+	"rl_ignoreUpdates": "Ignore status update",
+	"h_ignoreUpdates": "Do not restart the timer on device status update (on On value received)"
+}

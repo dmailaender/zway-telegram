@@ -1,0 +1,92 @@
+{
+	"singleton": false,
+	"dependencies": [],
+	"category": "notifications",
+	"author": "David Mailänder",
+	"homepage": "https://www.mailaender.it",
+	"icon": "icon.png",
+	"moduleName": "TelegramNotifier",
+	"version": "1.0.0",
+	"maturity": "stable",
+	"repository": {
+		"type": "git",
+		"source": "https://git.mailaender.it/z-way/telegram-notifier"
+	},
+	"defaults": {
+		"title": "__m_title__",
+		"description": "__m_descr__",
+		"log_level": 1
+	},
+	"schema": {
+		"type": "object",
+		"properties": {
+			"token": {
+				"required": true
+			},
+			"chat_id": {
+				"required": true
+			},
+			"log_level": {
+				"type": "select",
+				"enum": [1, 2]
+			},
+			"devices": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"device_id": {
+							"field": "enum",
+							"datasource": "namespaces",
+							"enum": "namespaces:devices_all:deviceId"
+						},
+						"value": {
+							"type": "string"
+						},
+						"message": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		}
+	},
+	"options": {
+		"fields": {
+			"token": {
+				"label": "__l_token__",
+				"required": true
+			},
+			"chat_id": {
+				"label": "__l_chat_id__",
+				"required": true
+			},
+			"log_level": {
+				"label": "__l_log_level__",
+				"type": "select",
+				"optionLabels": ["__l_log_error__", "__l_log_all__"],
+				"noneLabel": "__l_log_none__"
+			},
+			"devices": {
+				"label": "__l_devices__",
+				"type": "table",
+				"items": {
+					"fields": {
+						"device_id": {
+							"label": "__l_device_id__",
+							"datasource": "namespaces",
+							"field": "optionLabels",
+							"optionLabels": "namespaces:devices_switchBinary:deviceName,namespaces:devices_switchMultilevel:deviceName,namespaces:devices_doorlock:deviceName"
+						},
+						"value": {
+							"label": "__l_value__"
+						},
+						"message": {
+							"label": "__l_message__"
+						}
+					}
+				}
+			}
+		}
+	}
+}
