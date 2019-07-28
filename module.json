@@ -15,6 +15,11 @@
 	"defaults": {
 		"title": "__m_title__",
 		"description": "__m_descr__",
+		"devices": [
+			{
+				"message": "$DEVICE: $VALUE"
+			}
+		],
 		"log_level": 1
 	},
 	"schema": {
@@ -25,10 +30,6 @@
 			},
 			"chat_id": {
 				"required": true
-			},
-			"log_level": {
-				"type": "select",
-				"enum": [1, 2]
 			},
 			"devices": {
 				"type": "array",
@@ -48,6 +49,13 @@
 						}
 					}
 				}
+			},
+			"log_level": {
+				"type": "select",
+				"enum": [
+					1,
+					2
+				]
 			}
 		}
 	},
@@ -61,22 +69,18 @@
 				"label": "__l_chat_id__",
 				"required": true
 			},
-			"log_level": {
-				"label": "__l_log_level__",
-				"type": "select",
-				"optionLabels": ["__l_log_error__", "__l_log_all__"],
-				"noneLabel": "__l_log_none__"
-			},
 			"devices": {
 				"label": "__l_devices__",
+				"helper": "__h_devices__",
 				"type": "table",
 				"items": {
 					"fields": {
 						"device_id": {
 							"label": "__l_device_id__",
+							"type": "select",
 							"datasource": "namespaces",
 							"field": "optionLabels",
-							"optionLabels": "namespaces:devices_switchBinary:deviceName,namespaces:devices_switchMultilevel:deviceName,namespaces:devices_doorlock:deviceName"
+							"optionLabels": "namespaces:devices_all:deviceName"
 						},
 						"value": {
 							"label": "__l_value__"
@@ -86,6 +90,15 @@
 						}
 					}
 				}
+			},
+			"log_level": {
+				"label": "__l_log_level__",
+				"type": "select",
+				"optionLabels": [
+					"__l_log_error__",
+					"__l_log_all__"
+				],
+				"noneLabel": "__l_log_none__"
 			}
 		}
 	}
