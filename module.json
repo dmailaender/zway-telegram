@@ -10,7 +10,7 @@
 	"maturity": "stable",
 	"repository": {
 		"type": "git",
-		"source": "https://git.mailaender.it/z-way/telegram-notifier"
+		"source": "https://gitlab.com/mailaender.it/zw-telegram-notifier"
 	},
 	"defaults": {
 		"title": "__m_title__",
