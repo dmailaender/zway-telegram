@@ -3,13 +3,19 @@
 	"m_descr": "Module for the Z-Way Home Automation server that forwards notifications to a Telegram chat over the Bot API. Messages can be customized by device/status through the app settings, no separate virtual device is created.",
 	"l_token": "Bot Access Token",
 	"l_chat_id": "Chat ID",
+	"l_default_message": "Default notification text",
+	"rl_forward_all": "Send default message for not configured devices",
+	"rl_collect_default": "Collect default for later sending",
 	"l_log_level": "Log Level",
 	"l_devices": "Device Notifications",
 	"l_device_id": "Device",
 	"l_value": "Notification Value",
 	"l_message": "Message",
+	"l_options": "Options",
+	"l_ignore": "Ignore",	
+	"l_collect": "Collect",
+	"l_interval": "Notification interval",
 	"l_log_all": "Log all notifications",
 	"l_log_error": "Log errors only",
-	"l_log_none": "Do not log anything",
-	"h_devices": "Device 'None' defines the default message where $DEVICE is replaced with the name, $VALUE with the notificatio value. If not defined, only devices in the list will be forwared."
+	"l_log_none": "Do not log anything"
 }
