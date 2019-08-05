@@ -49,26 +49,27 @@ TelegramNotifier.prototype.init = function (config) {
 			return;
 		}
 		// look for device/value specific text: first device and value then device without value
+		// REMOVE THIS FIND()
 		var device = self.find(config.deviceNotifications, function (x) {
 			return x.deviceId === notification.source && (x.value === notification.message.l || !x.value);
 		});
 		var message = "";
 		// device not configured, but everything forwarded
 		if (device === false && config.forwardAllNotifications) {
-			message = self.compose(config.defaultMessage, notification);
+			message = self.composeMessage(config.defaultMessage, notification);
 			if (config.collectDefaultMessages) {
-				self.collect(notification, message);
+				self.collectNotification(notification, message);
 				return;
 			}
-			// device found and not ignored
+		// device found and not ignored
 		} else if (device.deviceId !== "" && device.options !== 'ignore') {
-			message = self.compose(device.message ? device.message : config.defaultMessage, notification);
+			message = self.composeMessage(device.message ? device.message : config.defaultMessage, notification);
 			if (device.options == 'collect') {
-				self.collect(notification, message);
+				self.collectNotification(notification, message);
 				return;
 			}
 		}
-		self.send(message);
+		self.sendMessage(message);
 	};
 	// schedule periodic transfer for collected messages
 	if (config.collectDefaultMessages || config.deviceNotifications.some(function (x) { return x.options === 'collect' })) {
@@ -82,13 +83,13 @@ TelegramNotifier.prototype.init = function (config) {
 			.sort(function (x, y) {
 				return x > y;
 			});
-		this.collector = function () {
-			self.send(JSON.stringify(self.messages));
+		this.notifier = function () {
+			self.sendMessage(JSON.stringify(self.messages));
 			self.length = 0;
-			clearTimeout(self.collector);
-			self.schedule();
+			clearTimeout(self.notifier);
+			self.scheduleNotification();
 		}
-		this.schedule();
+		this.scheduleNotification();
 	}
 	// register notification handler
 	self.controller.on('notifications.push', this.notificationHandler);
@@ -107,14 +108,14 @@ TelegramNotifier.prototype.stop = function () {
 // ----------------------------------------------------------------------------
 TelegramNotifier.prototype.oneDay = 24 * 60 * 60 * 1000;
 
-TelegramNotifier.prototype.compose = function (message, notification) {
+TelegramNotifier.prototype.composeMessage = function (message, notification) {
 	return message
 		.replace('$TIME', notification.timestamp)
 		.replace('$DEVICE', notification.message.dev)
 		.replace('$VALUE', notification.message.l);
 }
 
-TelegramNotifier.prototype.collect = function (notification, message) {
+TelegramNotifier.prototype.collectNotification = function (notification, message) {
 	if (typeof this.messages[notification.message.dev] === 'undefined') {
 		this.messages[notification.message.dev] = [];
 	}
@@ -124,7 +125,7 @@ TelegramNotifier.prototype.collect = function (notification, message) {
 	});
 }
 
-TelegramNotifier.prototype.send = function (message) {
+TelegramNotifier.prototype.sendMessage = function (message) {
 	var self = this;
 	http.request({
 		method: "POST",
@@ -145,7 +146,7 @@ TelegramNotifier.prototype.send = function (message) {
 	});
 }
 
-TelegramNotifier.prototype.schedule = function () {
+TelegramNotifier.prototype.scheduleNotification = function () {
 	var now = Date.now();
 	// try to find next or previous run time
 	var next = this.indexOf(this.interval, function (x) { return x > now });
@@ -154,7 +155,7 @@ TelegramNotifier.prototype.schedule = function () {
 		this.interval[next] += this.oneDay;
 	}
 	// console.debug("[telegram] notification scheduled for " + new Date(this.interval[next]));
-	setTimeout(this.collector, this.interval[next] - now);
+	setTimeout(this.notifier, this.interval[next] - now);
 }
 
 TelegramNotifier.prototype.indexOf = function (array, func) {
