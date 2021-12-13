@@ -3,14 +3,14 @@
 	"dependencies": [],
 	"category": "notifications",
 	"author": "David Mailänder",
-	"homepage": "https://www.mailaender.it",
+	"homepage": "https://mailaender.it",
 	"icon": "icon.png",
 	"moduleName": "TelegramNotifier",
 	"version": "1.0.0",
 	"maturity": "stable",
 	"repository": {
 		"type": "git",
-		"source": "https://gitlab.com/mailaender.it/zw-telegram-notifier"
+		"source": "https://github.com/dmailaender/zway-telegram"
 	},
 	"defaults": {
 		"title": "__m_title__",

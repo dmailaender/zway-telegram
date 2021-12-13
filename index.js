@@ -6,11 +6,8 @@
  * through the app settings, no separate virtual device is needed.
  *
  * Written by David Mailänder <david@mailaender.it> in July 2019 and published
- * on https://gitlab.com/ailaender.it/telegram-notifier under the GNU GPLv3.
+ * on https://github.com/dmailaender/zway-telegram under the GNU GPLv3.
  *
- * Visit our blog https://mailaender.it for more information about Z-Wave, home
- * automation and software development.
- * 
  * Copyright 2019 David Mailänder 
  * 
  **/
